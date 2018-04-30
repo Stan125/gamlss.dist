@@ -1,7 +1,8 @@
 # MS+KA+RS Tuesday, October 22, 2002 at 11:29 
-# last change Thursday, January 16, 2003 at 12:06 MS
+# last change Thursday, April 26, 2018 at 10:39 SS
 # the sigma is the standard deviation
 # pdf is out now 
+# SS: Included mean and variance functions
 NO <-function (mu.link ="identity", sigma.link="log") 
 {
     mstats <- checklink(   "mu.link", "Normal", substitute(mu.link),    
@@ -32,7 +33,9 @@ NO <-function (mu.link ="identity", sigma.link="log")
         sigma.initial = expression({sigma <- rep(sd(y),length(y))}), 
              mu.valid = function(mu) TRUE , 
           sigma.valid = function(sigma) all(sigma > 0), 
-              y.valid = function(y)  TRUE
+              y.valid = function(y)  TRUE,
+                 mean = function(mu, sigma) mu,
+             variance = function(mu, sigma) sigma^2
           ),
             class = c("gamlss.family","family"))
 }

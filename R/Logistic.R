@@ -28,8 +28,8 @@ LO <- function (mu.link ="identity", sigma.link="log")
               mu.valid = function(mu) TRUE, 
            sigma.valid = function(sigma)  all(sigma > 0), 
                y.valid = function(y)  TRUE,
-                    ex = function(mu, sigma) mu,
-                    vx = function(mu, sigma) (pi^2 * sigma^2) / 3
+                  mean = function(mu, sigma) mu,
+              variance = function(mu, sigma) (pi^2 * sigma^2) / 3
           ),
             class = c("gamlss.family","family"))
 }
