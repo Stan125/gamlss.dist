@@ -1,4 +1,5 @@
 # MS + BR Thursday, April 13, 2006 
+# SS May 9, 2018
 LOGNO <- function (mu.link="identity", sigma.link="log") 
 {
     mstats <- checklink("mu.link", "Log Normal", substitute(mu.link), c("inverse", "log", "identity", "own"))
@@ -34,7 +35,9 @@ LOGNO <- function (mu.link="identity", sigma.link="log")
          sigma.initial = expression({sigma <- rep(sd(log(y)),length(y)) }),  
               mu.valid = function(mu) all(mu > 0), 
            sigma.valid = function(sigma)  all(sigma > 0),
-               y.valid = function(y)  all(y > 0)
+               y.valid = function(y)  all(y > 0),
+        mean = function(mu, sigma) exp(mu + (sigma^2 / 2)),
+        variance = function(mu, sigma) exp(2 * mu + sigma^2) * (exp(sigma^2) - 1)
           ),
             class = c("gamlss.family","family"))
 }
