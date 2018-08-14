@@ -76,6 +76,7 @@ rNO <- function(n, mu=0, sigma=1)
 # MS Saturday, April 6, 2002 at 14:40
 # Thursday, January 16, 2003 at 12:20
 # the version of the Normal with sigma as the variance 
+# JL added moments, August 14, 2018 
 #----------------------------------------------------------------------------------------
  NO2 <-function (mu.link ="identity", sigma.link="log") 
 {
@@ -107,7 +108,9 @@ rNO <- function(n, mu=0, sigma=1)
         sigma.initial = expression({sigma <- rep(var(y),length(y)) }), 
              mu.valid = function(mu) TRUE , 
           sigma.valid = function(sigma)  all(sigma > 0), 
-              y.valid = function(y)  TRUE
+              y.valid = function(y)  TRUE,
+                 mean = function(mu, sigma) mu,
+             variance = function(mu, sigma) sigma
           ),
             class = c("gamlss.family","family"))
 }
