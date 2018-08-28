@@ -1,7 +1,7 @@
 #######################################
 #######     gamlss.dist        ########
 #######   Distribution tests   ########
-#### Exponential Gausian: exGAUS() ####
+#### Exponential Gaussian: exGAUS() ####
 #######################################
 
 ## Context
