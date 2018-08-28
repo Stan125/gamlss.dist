@@ -1,6 +1,8 @@
 # the ex-Gaussian distribution
 # Mikis Stasinopoulos and Bob Rigby (suggested by Jonathan Williams) 
 # 28_11_07
+# JL added moments, August 28, 2018
+
 exGAUS <- function (mu.link="identity", sigma.link="log", nu.link ="log") 
 {
     mstats <- checklink("mu.link", "ex-Gaussian", substitute(mu.link), 
@@ -102,7 +104,9 @@ exGAUS <- function (mu.link="identity", sigma.link="log", nu.link ="log")
           mu.valid = function(mu) TRUE , 
        sigma.valid = function(sigma)  all(sigma > 0),
           nu.valid = function(nu) all(nu > 0), 
-           y.valid = function(y) TRUE
+           y.valid = function(y) TRUE,
+              mean = function(mu, sigma, nu) mu + nu,
+          variance = function(mu, sigma, nu) sigma^2 + nu^2
           ),
             class = c("gamlss.family","family"))
 }
