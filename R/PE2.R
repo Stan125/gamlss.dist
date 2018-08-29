@@ -1,81 +1,84 @@
 # amended 27_11_2007
+# JL added moments, August 29, 2018
 PE2 <- function (mu.link="identity", sigma.link="log", nu.link ="log") 
 {
-
-    mstats <- checklink(   "mu.link", "Power Exponential type 2", substitute(mu.link),    
-                                                         c("inverse", "log", "identity", "own"))
-    dstats <- checklink("sigma.link", "Power Exponential type 2", substitute(sigma.link), 
-                                                         c("inverse", "log", "identity", "own"))
-    vstats <- checklink(   "nu.link", "Power Exponential type 2", substitute(nu.link),    
-                                                         c("logshiftto1", "log", "identity", "own"))
-        
-    structure(
-          list(family = c("PE2", "Power Exponential type 2"),
-           parameters = list(mu=TRUE, sigma=TRUE, nu=TRUE), 
-                nopar = 3,
-                 type = "Continuous", 
-              mu.link = as.character(substitute(mu.link)),  
-           sigma.link = as.character(substitute(sigma.link)), 
-              nu.link = as.character(substitute(nu.link)), 
-           mu.linkfun = mstats$linkfun, 
-        sigma.linkfun = dstats$linkfun, 
-           nu.linkfun = vstats$linkfun,
-           mu.linkinv = mstats$linkinv, 
-        sigma.linkinv = dstats$linkinv,
-           nu.linkinv = vstats$linkinv,
-                mu.dr = mstats$mu.eta, 
-             sigma.dr = dstats$mu.eta, 
-                nu.dr = vstats$mu.eta,
-                 dldm = function(y,mu,sigma,nu) {
-                               z <- (y-mu)/sigma
-                           dldm <- (sign(z)*nu*(abs(z)^(nu-1)))/sigma
-                           dldm
-                                    },
-               d2ldm2 = function(y,mu,sigma,nu) {
-                               z <- (y-mu)/sigma
-                           dldm <- (sign(z)*nu*(abs(z)^(nu-1)))/sigma
-                         d2ldm2 <- -(nu*nu*gamma(2-(1/nu))*gamma(1/nu))/(sigma^2) 
-                         d2ldm2 <- ifelse(nu<1.05, -dldm*dldm, d2ldm2)
-                         d2ldm2
-                                   },
-                 dldd = function(y,mu,sigma,nu) {
-                              z <- (y-mu)/sigma
-                           dldd <- (nu*(abs(z)^nu)-1)/(sigma)
-                           dldd   
-                                    },
-               d2ldd2 = function(sigma,nu) { 
-                                  d2ldd2 <- -nu/(sigma^2)
-                                  d2ldd2                                   
-                                   },
-                 dldv = function(y,mu,sigma,nu) {
-                              z <- (y-mu)/sigma  
-                           dldv <- (1/nu)-((log(abs(z)))*((abs(z))^nu)) 
-                           dldv <- dldv+(digamma(1/nu))/(nu^2)
-                           dldv 
-                                    }, 
-               d2ldv2 = function(y,mu,sigma,nu) { 
-                               p <- (1+nu)/nu                      
-                          part1 <- p*trigamma(p)+(digamma(p))^2
-                          part2 <- 2*(digamma(p))
-                         d2ldv2 <- part1+part2
-                         d2ldv2 <- -d2ldv2/nu^3    
-                         d2ldv2 <- ifelse(d2ldv2 < -1e-15, d2ldv2,-1e-15)                                    
-                         d2ldv2 
-                                   },
-              d2ldmdd = function(y) rep(0,length(y)),
-              d2ldmdv = function(y) rep(0,length(y)),
-              d2ldddv = function(y,mu,sigma,nu) (1+nu+digamma(1/nu))/(sigma*nu), 
-          G.dev.incr  = function(y,mu,sigma,nu,...)  -2*dPE2(y,mu,sigma,nu,log=TRUE),
-                 rqres = expression(
-                    rqres(pfun="pPE2", type="Continuous", y=y, mu=mu, sigma=sigma, nu=nu) 
-                                    ),
-            mu.initial = expression( mu <- (y+mean(y))/2 ),
-         sigma.initial = expression( sigma <- (abs(y-mean(y))+sd(y))/2 ),
-            nu.initial = expression( nu <- rep(1.8, length(y))), 
-              mu.valid = function(mu) TRUE , 
+  
+  mstats <- checklink(   "mu.link", "Power Exponential type 2", substitute(mu.link),    
+                         c("inverse", "log", "identity", "own"))
+  dstats <- checklink("sigma.link", "Power Exponential type 2", substitute(sigma.link), 
+                      c("inverse", "log", "identity", "own"))
+  vstats <- checklink(   "nu.link", "Power Exponential type 2", substitute(nu.link),    
+                         c("logshiftto1", "log", "identity", "own"))
+  
+  structure(
+    list(family = c("PE2", "Power Exponential type 2"),
+         parameters = list(mu=TRUE, sigma=TRUE, nu=TRUE), 
+         nopar = 3,
+         type = "Continuous", 
+         mu.link = as.character(substitute(mu.link)),  
+         sigma.link = as.character(substitute(sigma.link)), 
+         nu.link = as.character(substitute(nu.link)), 
+         mu.linkfun = mstats$linkfun, 
+         sigma.linkfun = dstats$linkfun, 
+         nu.linkfun = vstats$linkfun,
+         mu.linkinv = mstats$linkinv, 
+         sigma.linkinv = dstats$linkinv,
+         nu.linkinv = vstats$linkinv,
+         mu.dr = mstats$mu.eta, 
+         sigma.dr = dstats$mu.eta, 
+         nu.dr = vstats$mu.eta,
+         dldm = function(y,mu,sigma,nu) {
+           z <- (y-mu)/sigma
+           dldm <- (sign(z)*nu*(abs(z)^(nu-1)))/sigma
+           dldm
+         },
+         d2ldm2 = function(y,mu,sigma,nu) {
+           z <- (y-mu)/sigma
+           dldm <- (sign(z)*nu*(abs(z)^(nu-1)))/sigma
+           d2ldm2 <- -(nu*nu*gamma(2-(1/nu))*gamma(1/nu))/(sigma^2) 
+           d2ldm2 <- ifelse(nu<1.05, -dldm*dldm, d2ldm2)
+           d2ldm2
+         },
+         dldd = function(y,mu,sigma,nu) {
+           z <- (y-mu)/sigma
+           dldd <- (nu*(abs(z)^nu)-1)/(sigma)
+           dldd   
+         },
+         d2ldd2 = function(sigma,nu) { 
+           d2ldd2 <- -nu/(sigma^2)
+           d2ldd2                                   
+         },
+         dldv = function(y,mu,sigma,nu) {
+           z <- (y-mu)/sigma  
+           dldv <- (1/nu)-((log(abs(z)))*((abs(z))^nu)) 
+           dldv <- dldv+(digamma(1/nu))/(nu^2)
+           dldv 
+         }, 
+         d2ldv2 = function(y,mu,sigma,nu) { 
+           p <- (1+nu)/nu                      
+           part1 <- p*trigamma(p)+(digamma(p))^2
+           part2 <- 2*(digamma(p))
+           d2ldv2 <- part1+part2
+           d2ldv2 <- -d2ldv2/nu^3    
+           d2ldv2 <- ifelse(d2ldv2 < -1e-15, d2ldv2,-1e-15)                                    
+           d2ldv2 
+         },
+         d2ldmdd = function(y) rep(0,length(y)),
+         d2ldmdv = function(y) rep(0,length(y)),
+           d2ldddv = function(y,mu,sigma,nu) (1+nu+digamma(1/nu))/(sigma*nu), 
+           G.dev.incr  = function(y,mu,sigma,nu,...)  -2*dPE2(y,mu,sigma,nu,log=TRUE),
+           rqres = expression(
+             rqres(pfun="pPE2", type="Continuous", y=y, mu=mu, sigma=sigma, nu=nu) 
+           ),
+           mu.initial = expression( mu <- (y+mean(y))/2 ),
+           sigma.initial = expression( sigma <- (abs(y-mean(y))+sd(y))/2 ),
+           nu.initial = expression( nu <- rep(1.8, length(y))), 
+           mu.valid = function(mu) TRUE , 
            sigma.valid = function(sigma)  all(sigma > 0),
-              nu.valid = function(nu) all(nu > 0), 
-               y.valid = function(y)  TRUE
+           nu.valid = function(nu) all(nu > 0), 
+               y.valid = function(y)  TRUE,
+                  mean = function(mu, sigma, nu) mu,
+              variance = function(mu, sigma, nu) sigma^2 / (gamma(1/nu)/gamma(3/nu))
           ),
             class = c("gamlss.family","family"))
 }
