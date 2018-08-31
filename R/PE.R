@@ -1,4 +1,5 @@
 # amended 27_11_07
+# JL added moments, August 29, 2018
 PE <- function (mu.link="identity", sigma.link="log", nu.link ="log") 
 {
 
@@ -89,7 +90,9 @@ PE <- function (mu.link="identity", sigma.link="log", nu.link ="log")
               mu.valid = function(mu) TRUE , 
            sigma.valid = function(sigma)  all(sigma > 0),
               nu.valid = function(nu) all(nu > 0), 
-               y.valid = function(y)  TRUE
+               y.valid = function(y)  TRUE,
+                  mean = function(mu, sigma, nu) mu,
+              variance = function(mu, sigma, nu) sigma^2
           ),
             class = c("gamlss.family","family"))
 }

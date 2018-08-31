@@ -1,6 +1,7 @@
 ###Skew Normal Type 2
 
 #SN2
+# JL added moments, August 31, 2018
 SN2<-function (mu.link = "identity", sigma.link = "log", nu.link = "log") 
 {
     mstats <- checklink("mu.link", "skew normal type 2", 
@@ -119,9 +120,15 @@ SN2<-function (mu.link = "identity", sigma.link = "log", nu.link = "log")
             nu = nu)), mu.initial = expression(mu <- (y + 
             mean(y))/2), sigma.initial = expression(sigma <- rep(sd(y), 
             length(y))), nu.initial = expression(nu <- rep(1, 
-            length(y))), mu.valid = function(mu) TRUE, sigma.valid = function(sigma) all(sigma > 
-            0), nu.valid = function(nu) all(nu > 0), y.valid = function(y) TRUE), 
-            class = c("gamlss.family", "family"))
+            length(y))), 
+            mu.valid = function(mu) TRUE, 
+         sigma.valid = function(sigma) all(sigma > 0), 
+            nu.valid = function(nu) all(nu > 0), 
+             y.valid = function(y) TRUE,
+                mean = function(mu, sigma, nu) mu + sigma * (sqrt(2)/sqrt(pi)) * (nu-nu^-1),
+            variance = function(mu, sigma, nu) sigma^2 * ((nu^2+nu^-2-1) - ((sqrt(2)/sqrt(pi)) * (nu-nu^-1))^2)
+     ), 
+        class = c("gamlss.family", "family"))
 }
 
 #dSN2

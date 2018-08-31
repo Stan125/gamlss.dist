@@ -1,3 +1,4 @@
+# JL added moments, August 29, 2018
 SN1<- function (mu.link = "identity", sigma.link = "log", nu.link = "identity") 
 {
     mstats <- checklink("mu.link", "Skew normal type 1 (Azzalini type 1)", 
@@ -139,9 +140,15 @@ SN1<- function (mu.link = "identity", sigma.link = "log", nu.link = "identity")
             y = y, mu = mu, sigma = sigma, nu = nu)), 
         mu.initial = expression(mu <- (y + mean(y))/2), sigma.initial = expression(sigma <- rep(sd(y)/4, 
             length(y))), nu.initial = expression(nu <- rep(0.1, 
-            length(y))), mu.valid = function(mu) TRUE, sigma.valid = function(sigma) all(sigma > 
-            0), nu.valid = function(nu) TRUE, y.valid = function(y) TRUE), class = c("gamlss.family", 
-        "family"))
+            length(y))),
+        mu.valid = function(mu) TRUE, 
+     sigma.valid = function(sigma) all(sigma > 0), 
+        nu.valid = function(nu) TRUE, 
+         y.valid = function(y) TRUE,
+            mean = function(mu, sigma, nu) mu + sigma * nu * sqrt(2/((1+nu^2)*pi)),
+        variance = function(mu, sigma, nu) sigma^2 * (1 - (2*nu^2)/((1+nu^2)*pi))
+   ),
+      class = c("gamlss.family", "family"))
 }
                    
 #dSN1
