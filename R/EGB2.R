@@ -1,5 +1,6 @@
 # Amended 20/10/2007, see change to sigma link, dEGB2 and dldd to allow for negative sigma
 # starting values for mu and sigma  (and nu and tau) may need to be changed 
+# JL added moments, September 4, 2018
 EGB2 <- function (mu.link="identity", sigma.link="log", nu.link ="log", tau.link="log")
 {
     mstats <- checklink(   "mu.link", "Exponential generalized beta 2 (i.e. of the second kind)", substitute(mu.link), 
@@ -121,7 +122,9 @@ EGB2 <- function (mu.link="identity", sigma.link="log", nu.link ="log", tau.link
    sigma.valid = function(sigma) TRUE,
       nu.valid = function(nu) all(nu > 0), 
      tau.valid = function(tau) all(tau > 0), 
-       y.valid = function(y)  TRUE
+       y.valid = function(y)  TRUE,
+          mean = function(mu, sigma, nu, tau) mu + sigma * (digamma(nu) - digamma(tau)),
+      variance = function(mu, sigma, nu, tau) sigma^2 * (trigamma(nu) + trigamma(tau))
           ),
             class = c("gamlss.family","family"))
 }

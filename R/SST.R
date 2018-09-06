@@ -10,6 +10,7 @@
 #testContDist("SST", y.range=c(-Inf,Inf), mu.range = c(-Inf,Inf), sigma.range=c(0, Inf),  nu.range = c(0, Inf), tau.range=c(2, Inf), mu.val = c(0), sigma.val=c(1), nu=c(0.5, 1, 2), tau=c(2.5, 4, 10))
 #-----------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------
+# JL added moments, September 5, 2018
 SST<-function (mu.link = "identity", sigma.link = "log", nu.link = "log", 
                tau.link = "logshiftto2") 
 {
@@ -294,7 +295,10 @@ SST<-function (mu.link = "identity", sigma.link = "log", nu.link = "log",
        sigma.valid = function(sigma) all(sigma > 0), 
           nu.valid = function(nu) all(nu > 0), 
          tau.valid = function(tau) all(tau > 0), 
-           y.valid = function(y) TRUE), 
+           y.valid = function(y) TRUE,
+              mean = function(mu, sigma, nu, tau) mu,
+          variance = function(mu, sigma, nu, tau) sigma^2
+          ), 
              class = c("gamlss.family", "family"))
 }
 #-----------------------------------------------------------------------------------------

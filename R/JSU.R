@@ -1,5 +1,6 @@
 # 27_11_2007
 # the first derivatives squares have been used here
+# JL added moments, September 5, 2018
 JSU <- function (mu.link="identity", sigma.link="log", nu.link ="identity", tau.link="log")
 {
     mstats <- checklink(   "mu.link", "Johnson SU", substitute(mu.link), 
@@ -240,7 +241,9 @@ d2ldvdt
    sigma.valid = function(sigma)  all(sigma > 0),
       nu.valid = function(nu) TRUE , 
      tau.valid = function(tau) all(tau > 0), 
-       y.valid = function(y)  TRUE
+       y.valid = function(y)  TRUE,
+          mean = function(mu, sigma, nu, tau) mu,
+      variance = function(mu, sigma, nu, tau) sigma^2
           ),
             class = c("gamlss.family","family"))
 }
