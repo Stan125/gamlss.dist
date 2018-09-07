@@ -38,7 +38,9 @@ Author: Mikis Stasinopoulos [aut, cre, cph],
   Marco Enea [ctb],
   Alexios Ghalanos [ctb],
   Christos Argyropoulos [ctb],
-  Almond Stocker [ctb]
+  Almond Stocker [ctb],
+  Stanislaus Stadlmann [ctb],
+  Jens Lichter [ctb]
 Maintainer: Mikis Stasinopoulos <d.stasinopoulos@londonmet.ac.uk>
 NeedsCompilation: yes
 Packaged: 2018-06-06 09:05:36 UTC; MikisStasinopoulos
