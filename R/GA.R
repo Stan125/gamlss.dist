@@ -1,6 +1,7 @@
 # MS Saturday, April 6, 2002 at 14:43
 # last change MS Tuesday, September 9, 2003 at 10:21
 # Gamma distribution with E(y)=mu Var(y)=sigma^2*mu^2
+# JL added moments, September 10, 2018
 GA <-function (mu.link ="log", sigma.link="log") 
 {
     mstats <- checklink("mu.link", "Gamma", substitute(mu.link), c("inverse", "log", "identity", "own"))
@@ -30,7 +31,9 @@ GA <-function (mu.link ="log", sigma.link="log")
         sigma.initial = expression({sigma <- rep(1,length(y))}) ,
              mu.valid = function(mu) all(mu > 0) , 
           sigma.valid = function(sigma)  all(sigma > 0), 
-              y.valid = function(y)  all(y > 0)
+              y.valid = function(y)  all(y > 0),
+                 mean = function(mu, sigma) mu,
+             variance = function(mu, sigma) sigma^2 * mu^2
           ),
                 class = c("gamlss.family","family"))
 }
