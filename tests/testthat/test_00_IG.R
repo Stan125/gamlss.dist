@@ -28,6 +28,6 @@ ex_theo <- round(fam$mean(mu, sigma),3)
 vx_theo <- round(fam$variance(mu, sigma),3)
 
 ## Test here
-dev = ifelse(n = 1e6, 0.02, ifelse(n = 1e5, 0.035, 0.05)) # larger deviation possible, if sample smaller
+dev = ifelse(n >= 1e6, 0.02, ifelse(n >= 1e5, 0.035, 0.05)) # larger deviation possible, if sample smaller
 expect_true(abs(ex_emp - ex_theo) < dev)  
 expect_true(abs(vx_emp - vx_theo) < dev)  

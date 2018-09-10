@@ -58,6 +58,7 @@ rPARETO2o <- function(n, mu = 1, sigma = 0.5)
 }
 #-------------------------------------------------------------------------------
 #Gamlss Family Function
+# JL added moments, September 10, 2018
 PARETO2o <- function (mu.link = "log", sigma.link = "log") 
 {
     mstats <- checklink("mu.link", "Pareto Type 2", substitute(mu.link), 
@@ -117,6 +118,9 @@ PARETO2o <- function (mu.link = "log", sigma.link = "log")
         sigma.initial = expression({sigma <- rep(sd(y), length(y))}), 
         mu.valid = function(mu) all(mu > 0), 
         sigma.valid = function(sigma) all(sigma > 0), 
-        y.valid = function(y) TRUE), 
+        y.valid = function(y) TRUE,
+           mean = function(mu, sigma) ifelse(sigma > 1, mu / (sigma-1), Inf),
+       variance = function(mu, sigma) ifelse(sigma > 2, (sigma * mu^2) / ((sigma-1)^2 * (sigma-2)), Inf)
+          ), 
         class = c("gamlss.family", "family"))
 }
