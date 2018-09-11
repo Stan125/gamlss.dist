@@ -1,4 +1,5 @@
 # last change MS Wednesday, September 17, 2003 at 08:51
+# JL added moments, September 10, 2018
 WEI <- function (mu.link="log", sigma.link="log") 
 {
     mstats <- checklink("mu.link", "Weibull", substitute(mu.link), c("inverse", "log", "identity", "own" ))# dummy
@@ -33,7 +34,9 @@ WEI <- function (mu.link="log", sigma.link="log")
                                     sigma <-  rep(s.Y.s,length(y))}),
               mu.valid = function(mu) all(mu > 0) , 
            sigma.valid = function(sigma)  all(sigma > 0), 
-               y.valid = function(y)  all(y > 0)
+               y.valid = function(y)  all(y > 0),
+                  mean = function(mu, sigma) mu * gamma(1/sigma + 1),
+              variance = function(mu, sigma) mu^2 * (gamma(2/sigma + 1) - (gamma(1/sigma + 1))^2)
           ),
             class = c("gamlss.family","family"))
 }
