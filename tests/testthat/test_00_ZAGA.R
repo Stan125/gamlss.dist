@@ -18,7 +18,7 @@ n <- 1e6
 mu <- 1
 sigma <- 1
 nu <- 0.1
-rvec <- rZAGA(n, mu, sigma)
+rvec <- rZAGA(n, mu, sigma, nu)
 
 ## Empirical Moments
 ex_emp <- round(mean(rvec), 3)
