@@ -59,6 +59,7 @@ rGEOM<- function(n, mu=2)
 }
 
 #Distribution function
+# JL added moments, September 11, 2018
 GEOM<-function (mu.link = "log")
 {
 mstats <- checklink("mu.link", "Geometric", substitute(mu.link), 
@@ -84,7 +85,10 @@ structure(list(family = c("GEOM", "Geometric"),
                             ymin = 0, y = y, mu = mu)),   
         mu.initial = expression(mu <- rep(mean(y), length(y))),            
         mu.valid = function(mu) all(mu > 0) , 
-        y.valid = function(y) all(y >=0)),      
+        y.valid = function(y) all(y >=0),
+           mean = function(mu) mu,
+      variance  = function(mu) mu + mu^2  
+      ),      
         class = c("gamlss.family", "family"))
 }
 
