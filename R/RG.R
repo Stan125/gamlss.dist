@@ -1,6 +1,3 @@
-
-# JL added moments, August 14, 2018
-
 RG <-function (mu.link ="identity", sigma.link="log") 
     {
     mstats <- checklink("mu.link", "Reverse Gumbel", substitute(mu.link), c("inverse", "log", "identity", "own"))

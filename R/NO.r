@@ -1,8 +1,7 @@
 # MS+KA+RS Tuesday, October 22, 2002 at 11:29 
-# last change Thursday, April 26, 2018 at 10:39 SS
+# last change Thursday, January 16, 2003 at 12:06 MS
 # the sigma is the standard deviation
 # pdf is out now 
-# SS: Included mean and variance functions
 NO <-function (mu.link ="identity", sigma.link="log") 
 {
     mstats <- checklink(   "mu.link", "Normal", substitute(mu.link),    
@@ -76,7 +75,6 @@ rNO <- function(n, mu=0, sigma=1)
 # MS Saturday, April 6, 2002 at 14:40
 # Thursday, January 16, 2003 at 12:20
 # the version of the Normal with sigma as the variance 
-# JL added moments, August 14, 2018 
 #----------------------------------------------------------------------------------------
  NO2 <-function (mu.link ="identity", sigma.link="log") 
 {

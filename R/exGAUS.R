@@ -1,8 +1,6 @@
 # the ex-Gaussian distribution
 # Mikis Stasinopoulos and Bob Rigby (suggested by Jonathan Williams) 
 # 28_11_07
-# JL added moments, August 28, 2018
-
 exGAUS <- function (mu.link="identity", sigma.link="log", nu.link ="log") 
 {
     mstats <- checklink("mu.link", "ex-Gaussian", substitute(mu.link), 

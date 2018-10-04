@@ -1,6 +1,5 @@
 #----------------------------------------------------------------------------------------
 # MS + BR last change Thursday, April 13, 2006
-# JL added moments, August 31, 2018
 TF <- function (mu.link="identity", sigma.link="log", nu.link ="log")
 {
     mstats <- checklink("mu.link", "t Family", substitute(mu.link), c("inverse", "log", "identity", "own"))
@@ -76,8 +75,8 @@ TF <- function (mu.link="identity", sigma.link="log", nu.link ="log")
               nu.valid = function(nu) all(nu > 0), 
                y.valid = function(y)  TRUE,
                   mean = function(mu, sigma, nu) ifelse(nu>1, mu, NaN),
-              variance = function(mu, sigma, nu) ifelse(nu>2, (sigma^2*nu)/(nu-2), Inf)   
-        ),
+              variance = function(mu, sigma, nu) ifelse(nu>2, (sigma^2*nu)/(nu-2), Inf) 
+          ),
             class = c("gamlss.family","family"))
 }
 #----------------------------------------------------------------------------------------

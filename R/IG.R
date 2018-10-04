@@ -1,5 +1,4 @@
 # amended 27_11_2007
-# JL added moments, September 10, 2018
 IG <-function (mu.link = "log", sigma.link = "log") 
 {   
     mstats <- checklink("mu.link", "Inverse Gaussian", substitute(mu.link), c("1/mu^2", "inverse", "log", "identity", "own"))
@@ -33,7 +32,7 @@ IG <-function (mu.link = "log", sigma.link = "log")
                   mean = function(mu, sigma) mu,
               variance = function(mu, sigma) sigma^2 * mu^3
             ),
-            class = c("gamlss.family","family"))
+                 class = c("gamlss.family","family"))
 }
 #----------------------------------------------------------------------------------------  
 dIG<-function(x, mu = 1, sigma = 1, log=FALSE)

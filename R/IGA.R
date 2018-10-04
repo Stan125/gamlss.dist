@@ -129,7 +129,6 @@ rIGAMMA <- function (n, mu = 1, sigma = 0.5)
 }
 #--------------------------------------------------------------------------------
 #Gamlss Family Function
-# JL added moments, September 10, 2018
 IGAMMA <- function (mu.link = "log", sigma.link = "log") 
 {
     mstats <- checklink("mu.link", "Inverse Gamma", substitute(mu.link), 
@@ -172,20 +171,19 @@ IGAMMA <- function (mu.link = "log", sigma.link = "log")
        d2ldmdd 
     }, 
     G.dev.incr = function(y, mu, sigma, ...) -2 * dIGAMMA(y, mu, sigma, log = TRUE), 
-    rqres = expression(rqres(pfun = "pIGAMMA", type = "Continuous", y = y, 
+         rqres = expression(rqres(pfun = "pIGAMMA", type = "Continuous", y = y, 
                              mu = mu, sigma = sigma)), 
     mu.initial = expression({ mu <- rep(mean(y), length(y))}), 
-    sigma.initial = expression({ sigma <- rep(((mean(y)^2)/var(y))+2, length(y)) }), 
-    mu.valid = function(mu) all(mu > 0), 
-    sigma.valid = function(sigma) all(sigma > 0), 
-    y.valid = function(y) TRUE,
-       mean = function(mu, sigma) ifelse(sigma^2 < 1, 
-                                         ((1+sigma^2)*mu)/(1-sigma^2),
-                                         Inf),
-   variance = function(mu, sigma) ifelse(sigma^2 < 0.5, 
-                                         ((1+sigma^2)^2*mu^2*sigma^2)/((1-sigma^2)^2*(1-2*sigma^2)),
-                                         Inf)
-    ), 
+ sigma.initial = expression({ sigma <- rep(((mean(y)^2)/var(y))+2, length(y)) }), 
+      mu.valid = function(mu) all(mu > 0), 
+   sigma.valid = function(sigma) all(sigma > 0), 
+       y.valid = function(y) TRUE,
+          mean = function(mu, sigma) ifelse(sigma^2 < 1,
+                                   ((1+sigma^2)*mu)/(1-sigma^2),Inf),
+      variance = function(mu, sigma) ifelse(sigma^2 < 0.5,
+                      ((1+sigma^2)^2*mu^2*sigma^2)/((1-sigma^2)^2*(1-2*sigma^2)),
+                                       Inf)
+    ),
     class = c("gamlss.family", "family"))
 }
 #--------------------------------------------------------------------------------

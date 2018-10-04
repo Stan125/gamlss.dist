@@ -1,5 +1,4 @@
 #-------------------------------------------------------------
-# JL added moments, September 10,2018
 WEI2 <- function (mu.link ="log", sigma.link="log") 
 {
     mstats <- checklink("mu.link", "Weibull.2", substitute(mu.link), c("inverse", "log", "identity", "own"))

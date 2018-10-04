@@ -1,5 +1,4 @@
 # amended 27_11_07
-# JL added moments, August 29, 2018
 PE <- function (mu.link="identity", sigma.link="log", nu.link ="log") 
 {
 

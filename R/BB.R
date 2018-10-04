@@ -1,5 +1,4 @@
 # MS , RAR, KA amended 21_04_2010
-# SS added moments, 25.07.2018
 BB <- function (mu.link = "logit", sigma.link = "log") 
 {
     mstats <- checklink("mu.link", "Beta Binomial", substitute(mu.link),
@@ -49,11 +48,7 @@ BB <- function (mu.link = "logit", sigma.link = "log")
          sigma.initial = expression (sigma <- rep(1,length(y))),
               mu.valid = function(mu) all(mu > 0) && all(mu < 1), 
            sigma.valid = function(sigma)  all(sigma > 0), 
-               y.valid = function(y)  all(y >= 0),
-                  mean = function(mu, sigma) mu * 10, # because bd is 10
-              variance = function(mu, sigma) {
-                10 * mu * (1 - mu) * (1 + (sigma / (1 + sigma)) * (10 - 1))
-              }
+               y.valid = function(y)  all(y >= 0)
           ),
             class = c("gamlss.family","family"))
 }

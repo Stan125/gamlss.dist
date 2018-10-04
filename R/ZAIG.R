@@ -1,6 +1,5 @@
 # The inflated inverse Gaussian distribution
 # created by Bob Rigby and Mikis Stasinopoulos, suggested by Gillian Heller 
-# JL added moments, September 11, 2018
 # ---------------------------------------------------------------------------------------
 ZAIG <- function (mu.link ="log", sigma.link="log", nu.link ="logit")
 {
@@ -44,8 +43,8 @@ ZAIG <- function (mu.link ="log", sigma.link="log", nu.link ="logit")
            sigma.valid = function(sigma)  all(sigma > 0),
               nu.valid = function(nu) all(nu > 0) && all(nu < 1), 
                y.valid = function(y)  all(y>=0),
-                  mean = function(mu, sigma, nu) (1-nu) * mu,
-              variance = function(mu, sigma, nu) (1-nu) * mu^2 * (nu + mu * sigma^2)
+                  mean = function(mu, sigma, nu) (1 - nu) * mu,
+              variance = function(mu, sigma, nu) (1 - nu) * mu^2 * (nu+mu*sigma^2)
           ),
             class = c("gamlss.family","family"))
 }

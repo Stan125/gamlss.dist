@@ -1,7 +1,6 @@
 # The inflated Gamma distribution
 # created by Bob Rigby and Mikis Stasinopoulos and Gillian Heller
-# Tuesday, July 14, 2009 
-# JL added moments, September 10, 2018
+# Tuesday, July 14, 2009  
 # ---------------------------------------------------------------------------------------
 ZAGA <- function (mu.link ="log", sigma.link="log", nu.link ="logit")
 {
@@ -44,7 +43,7 @@ ZAGA <- function (mu.link ="log", sigma.link="log", nu.link ="logit")
               mu.valid = function(mu) TRUE , 
            sigma.valid = function(sigma)  all(sigma > 0),
               nu.valid = function(nu) all(nu > 0) && all(nu < 1), 
-               y.valid = function(y)  all(y>=0), 
+               y.valid = function(y)  all(y>=0),
                   mean = function(mu, sigma, nu) (1 - nu) * mu,
               variance = function(mu, sigma, nu) (1 - nu) * mu^2 * (sigma^2 + nu)
           ),

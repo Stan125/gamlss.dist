@@ -1,6 +1,5 @@
 # 27_11_2007
 # the first derivatives squares have been used here
-# JL added moments, September 5, 2018
 JSU <- function (mu.link="identity", sigma.link="log", nu.link ="identity", tau.link="log")
 {
     mstats <- checklink(   "mu.link", "Johnson SU", substitute(mu.link), 

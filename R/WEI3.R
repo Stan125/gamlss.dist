@@ -1,7 +1,6 @@
 # RR
 # the weibull distribution parameterised with mu as the mean
 #----------------------------------------------------------------------------------------
-# JL added moments, September 10, 2018
 WEI3 <- function (mu.link="log", sigma.link="log") 
 {
     mstats <- checklink("mu.link", "WEI3bull", substitute(mu.link), c("inverse", "log", "identity"))# dummy
@@ -38,7 +37,7 @@ WEI3 <- function (mu.link="log", sigma.link="log")
                y.valid = function(y)  all(y > 0),
                   mean = function(mu, sigma) mu,
               variance = function(mu, sigma) (mu * (gamma(1/sigma + 1))^-1)^2  * (gamma(2/sigma + 1) - (gamma(1/sigma + 1))^2)
-        ),
+          ),
             class = c("gamlss.family","family"))
 }
 #----------------------------------------------------------------------------------------

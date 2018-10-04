@@ -1,5 +1,4 @@
 # amended 27_11_2007
-# JL added moments, September 4, 2018
 JSUo <- function (mu.link="identity", sigma.link="log", nu.link ="identity", tau.link="log")
 {
     mstats <- checklink(   "mu.link", "Johnson SU", substitute(mu.link), 

@@ -9,7 +9,6 @@
 #testContDist("TF2", y.range=c(-Inf,Inf), mu.range = c(-Inf,Inf), sigma.range=c(0, Inf),  nu.range = c(0, Inf), mu.val = c(0), sigma.val=c(1,2,10), nu=c(2.5, 4, 10))
 #-----------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------
-# JL added moments, August 31, 2018
 TF2 <- function(mu.link="identity", sigma.link="log", nu.link ="logshiftto2")
 {
     mstats <- checklink("mu.link", "t Family", substitute(mu.link), c("inverse", "log", "identity", "own"))
