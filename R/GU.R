@@ -28,7 +28,7 @@ GU <-function (mu.link ="identity", sigma.link="log")
               mu.valid = function(mu) TRUE , 
            sigma.valid = function(sigma)  all(sigma > 0), 
                y.valid = function(y)  TRUE,
-                  mean = function(mu, sigma)  mu-0.5772157*sigma,
+                  mean = function(mu, sigma) mu-0.5772157*sigma,
               variance = function(mu, sigma) 1.64493*sigma^2
           ),
             class = c("gamlss.family","family"))

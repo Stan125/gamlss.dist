@@ -3,7 +3,6 @@
 #---------------------------#
 #------------------------------------------------------------------
 #Fitting function
-# JL added moments, September 11, 2018
 YULE<-function (mu.link = "log")
 {
   mstats <- checklink(which.link="mu.link", 
@@ -38,11 +37,9 @@ YULE<-function (mu.link = "log")
                  mu.initial = expression(mu <- rep(mean(y), length(y))),            
                  mu.valid = function(mu) all(mu > 0) ,
                  y.valid = function(y) all(y >=0),
-                    mean = function(mu) mu,
-                variance = function(mu) ifelse(mu < 1, 
-                                                mu * (mu+1)^2 * (1-mu)^-1,
-                                               Inf) 
-                ),        
+                 mean = function(mu) mu,
+                 variance = function(mu) ifelse(mu < 1, mu * (mu+1)^2 * (1-mu)^-1,Inf) 
+                 ),        
             class = c("gamlss.family", "family"))
 }
 #------------------------------------------------------------------

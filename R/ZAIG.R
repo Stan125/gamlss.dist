@@ -110,9 +110,13 @@ qZAIG <- function(p, mu=1, sigma=1,  nu=0.1, lower.tail = TRUE, log.p = FALSE,
          for (i in seq(along=p))
           {
            q[i] <- if (nu[i]>=p[i]) 0
-                   else  uniroot(h1, c(lower[i], upper[i]))$root                
-          if (q[i]>=upper[i]) warning("q is at the upper limit, increase the upper.limit")
-         # if (q[i]<=lower[i]) warning("q is at the lower limit, decrease the lower.limit")
+                   else  { tryCatch( uniroot(h1, c(lower[i], upper[i]))$root,
+                        warning = function(w) {warning(as.character(w))},
+                        error = function(e){warning("increasing the upper limit of q function","\n")	
+                     res <- uniroot(h1, c(lower[i], upper[i]+20))$root
+                     return(res)
+                     })}        
+          #if (q[i]>=upper[i]) warning("q is at the upper limit, increase the upper.limit")
           }                                                                               
     q
    }

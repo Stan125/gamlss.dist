@@ -2,8 +2,8 @@ Package: gamlss.dist
 Type: Package
 Title: Distributions for Generalized Additive Models for Location Scale
         and Shape
-Version: 5.0-9
-Date: 2018-10-02
+Version: 5.1-0
+Date: 2018-10-06
 Authors@R: c(person("Mikis", "Stasinopoulos", role = c("aut", "cre", "cph"), 
            email = "d.stasinopoulos@londonmet.ac.uk"),
            person("Robert", "Rigby", role = c("aut"), email = "r.rigby@londonmet.ac.uk"), 
@@ -11,8 +11,7 @@ Authors@R: c(person("Mikis", "Stasinopoulos", role = c("aut", "cre", "cph"),
            person("Vlasios", "Voudouris", role = "ctb"),
            person("Gillian", "Heller", role = "ctb"),
            person("Fernanda", "De Bastiani", role = "ctb"),
-           person("Raydonal", "Ospina", role = "ctb",  
-           email= "rospina@ime.usp.br"),
+           person("Raydonal", "Ospina", role = "ctb", email= "rospina@ime.usp.br"),
            person("Nicoletta", "Motpan", role = "ctb"),
            person("Fiona", "McElduff", role = "ctb"),
            person("Majid", "Djennad", role = "ctb"),
@@ -28,19 +27,23 @@ License: GPL-2 | GPL-3
 URL: http://www.gamlss.org/
 Depends: R (>= 2.15.0), MASS, graphics, stats, methods
 Repository: CRAN
-Author: Mikis Stasinopoulos [aut, cre, cph],  
-          Robert Rigby [aut],
-          Calliope Akantziliotou [ctb],
-          Vlasios Voudouris [ctb],
-          Gillian Heller [ctb],
-          Raydonal Ospina [ctb],
-          Nicoletta Motpan [ctb],
-          Fiona McElduff [ctb],
-          Majid Djennad [ctb],
-          Marco Enea [ctb],
-          Alexios Ghalanos [ctb],
-          Christos Argyropoulos [ctb],
-          Almond Stocker [ctb]
+Author: Mikis Stasinopoulos [aut, cre, cph],
+  Robert Rigby [aut],
+  Calliope Akantziliotou [ctb],
+  Vlasios Voudouris [ctb],
+  Gillian Heller [ctb],
+  Fernanda De Bastiani [ctb],
+  Raydonal Ospina [ctb],
+  Nicoletta Motpan [ctb],
+  Fiona McElduff [ctb],
+  Majid Djennad [ctb],
+  Marco Enea [ctb],
+  Alexios Ghalanos [ctb],
+  Christos Argyropoulos [ctb],
+  Almond Stocker [ctb],
+  Jens Lichter [ctb],
+  Stanislaus Stadlmann [ctb]
 Maintainer: Mikis Stasinopoulos <d.stasinopoulos@londonmet.ac.uk>
 NeedsCompilation: yes
-Packaged: 2018-10-02 17:44:23 UTC; MikisStasinopoulos
+Packaged: 2018-10-06 11:01:45 UTC; MikisStasinopoulos
+Date/Publication: 2018-10-06 11:30:02 UTC

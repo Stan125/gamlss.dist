@@ -46,7 +46,6 @@ rGEOMo<- function(n, mu=.5)
 }
 #---------------------------------------------------------------------------
 #Distribution function
-# JL added moments, September 11, 2018
 GEOMo<-function (mu.link = "logit")
 {
 mstats <- checklink("mu.link", "Geometric", substitute(mu.link), 
@@ -77,8 +76,8 @@ structure(list(family = c("GEOMo", "Geometric original"),
         mu.initial = expression(mu <- rep(.5, length(y))),            
         mu.valid = function(mu) all(mu > 0) && all(mu < 1),   
         y.valid = function(y) all(y >=0),
-           mean = function(mu) (1-mu) * mu^-1,
+        mean = function(mu) (1-mu) * mu^-1,
         variance = function(mu) (1-mu) * mu^-2
-      ),      
+        ),      
         class = c("gamlss.family", "family"))
 }
