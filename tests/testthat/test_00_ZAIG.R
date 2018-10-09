@@ -7,17 +7,14 @@
 ## Context
 testthat::context("ZAIG")
 
-## Skip: because of bug not available
-skip("Bug in rZAIG()")
-
 ## Seed
-set.seed(221)
+set.seed(2345)
 
 ## Family
 fam <- ZAIG()
 
 ## Random Values
-n <- 500    # a larger sample size gives uniroot errors
+n <- 2e4    # a larger sample size gives uniroot errors
 mu <- 1
 sigma <- 1
 nu <- 0.1
@@ -33,4 +30,5 @@ vx_theo <- fam$variance(mu, sigma, nu)
 
 ## Test here if they are about the same
 expect_true(abs(ex_emp - ex_theo) < 0.02)  
-expect_true(abs(vx_emp - vx_theo) < 0.02)  # wrong, but small sample size needs to be considered
+expect_true(abs(vx_emp - vx_theo) < 0.02)
+

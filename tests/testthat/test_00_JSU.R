@@ -17,7 +17,7 @@ fam <- JSU()
 mu <- 0
 sigma <- 1
 nu <- 1
-tau <- 0.5
+tau <- 1
 rvec <- rJSU(1e6, mu, sigma, nu, tau) 
 
 ## Empirical Moments
