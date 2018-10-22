@@ -92,7 +92,26 @@ NET <- function (mu.link ="identity", sigma.link="log", nu.link ="identity", tau
            sigma.valid = function(sigma)  all(sigma > 0),
               nu.valid = function(nu) all(nu > 0), 
              tau.valid = function(tau, nu) all(tau > nu),
-               y.valid = function(y) TRUE
+               y.valid = function(y) TRUE,
+                  mean = function(mu, sigma, nu, tau) ifelse( nu * tau > 2,
+                                                              mu,
+                                                              NaN),
+              variance = function(mu, sigma, nu, tau) {
+                                                       a <- sqrt(2*pi) *  (2*pnorm(nu) - 1)
+                                                       b <- 2/nu * exp(-nu^2/2) 
+                                                       c <- 2/(nu*(nu*tau-1)) * exp(-nu*tau + nu^2/2)
+                                                       d <- 1/(a + b + c)
+          
+                                                       return(
+                                                               ifelse( nu * tau > 3, 
+                                                                       2 * sigma^2 * d * (sqrt(2*pi) * (pnorm(nu) - 1/2)
+                                                                                          + (2/nu + 2/nu^3) * exp(-nu^2/2)
+                                                                                          + (nu^2*tau^2 + 4*nu*tau + 6) / (nu^3 * (nu*tau - 3)) * exp(-nu*tau + nu^2/2)) ,
+                                                                       Inf)
+                                                              )
+                                                          }
+                                                              
+                                                              
           ),
             class = c("gamlss.family","family"))
 }
