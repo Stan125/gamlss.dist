@@ -1,7 +1,7 @@
 ########################################
 ########     gamlss.dist        ########
 ########   Distribution tests   ########
-######  Beta distribution: BE()   ######
+## Beta sec. parameterization: BE()   ##
 ########################################
 
 ## Context
