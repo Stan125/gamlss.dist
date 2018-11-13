@@ -14,7 +14,7 @@ set.seed(291)
 fam <- SHASHo()
 
 ## Random Values
-n <- 1e6
+n <- 1e7
 mu <- 0
 sigma <- 1
 nu <- 0.5
