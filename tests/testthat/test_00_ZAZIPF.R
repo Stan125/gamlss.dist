@@ -1,0 +1,56 @@
+#######################################
+#######     gamlss.dist        ########
+#######   Distribution tests   ########
+###  Zero adjusted zipf: ZAZIPF()  ####
+#######################################
+
+## Context
+testthat::context("ZAZIPF")
+
+## Seed
+set.seed(241)
+
+## Family
+fam <- ZAZIPF()
+
+## Random Values
+n <- 1e3  # small sample size to speed up loading
+mu <- 0.5  # if mu >= 2 the variance goes to Inf, mu needs to be respecified
+sigma <- 0.1
+rvec <- rZAZIPF(n, mu, sigma) 
+
+## Empirical Moments
+ex_emp <- mean(rvec)
+vx_emp <- var(rvec)
+
+## Theoretical moments
+ex_theo <- fam$mean(mu, sigma)
+vx_theo <- fam$variance(mu, sigma)
+
+## Test here if they are about the same
+expect_true(abs(ex_emp - ex_theo) < 0.02)  
+expect_true(abs(vx_emp - vx_theo) < 0.02)
+
+
+
+### Test for mu = 5
+
+## Random Values
+n <- 1e5
+mu <- 5  
+sigma <- 0.1
+rvec <- rZAZIPF(n, mu, sigma) 
+
+## Empirical Moments
+ex_emp <- mean(rvec)
+vx_emp <- var(rvec)
+
+## Theoretical moments
+ex_theo <- fam$mean(mu, sigma)
+vx_theo <- fam$variance(mu, sigma)
+
+## Test here if they are about the same
+expect_true(abs(ex_emp - ex_theo) < 0.02)  
+expect_true(abs(vx_emp - vx_theo) < 0.02) # works
+
+
