@@ -140,7 +140,9 @@ BNB <-function (mu.link ="log", sigma.link="log", nu.link="log")
               mu.valid = function(mu) all(mu > 0) , 
            sigma.valid = function(sigma)  all(sigma > 0), 
               nu.valid = function(nu) TRUE,  
-               y.valid = function(y)  all(y >= 0)
+               y.valid = function(y)  all(y >= 0),
+                  mean = function(mu, sigma, nu) mu,
+              variance = function(mu, sigma, nu) ifelse(sigma < 1, mu * (1 + mu * nu) * (1 + sigma / nu) / (1 - sigma), Inf )
           ),
             class = c("gamlss.family","family"))
 }

@@ -213,8 +213,11 @@ SEP4 <- function (mu.link="identity", sigma.link="log", nu.link ="log", tau.link
            sigma.valid = function(sigma)  all(sigma > 0),
               nu.valid = function(nu) all(nu > 0), 
              tau.valid = function(tau) all(tau > 0), 
-               y.valid = function(y)  TRUE
-          ),
+               y.valid = function(y)  TRUE,
+                  mean = function(mu, sigma, nu, tau) mu + (sigma * ( 1/tau * gamma(2/tau) - 1/nu * gamma(2/nu))) / (gamma(1 + 1/tau) + gamma(1 + 1/nu)),
+              variance = function(mu, sigma, nu, tau) sigma^2 * ( ( 1/tau * gamma(3/tau) + 1/nu * gamma(3/nu)) / (gamma(1 + 1/tau) + gamma(1 + 1/nu)) - ( ( 1/tau * gamma(2/tau) - 1/nu * gamma(2/nu)) / (gamma(1 + 1/tau) + gamma(1 + 1/nu)) )^2  )
+    
+      ),
             class = c("gamlss.family","family"))
 }
 #-----------------------------------------------------------------  

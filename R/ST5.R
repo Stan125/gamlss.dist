@@ -187,7 +187,26 @@ ST5<- function (mu.link="identity", sigma.link="log", nu.link ="identity", tau.l
    sigma.valid = function(sigma)  all(sigma > 0),
       nu.valid = function(nu) TRUE , 
      tau.valid = function(tau) all(tau > 0), 
-       y.valid = function(y)  TRUE
+       y.valid = function(y)  TRUE,
+          mean = function(mu, sigma, nu, tau) {
+                                                 a <- (1 + nu * (2*tau + nu^2)^(-1/2)) / tau
+                                                 b <- (1 - nu * (2*tau + nu^2)^(-1/2)) / tau
+                                                EZ <- ( sqrt(a + b) * (a - b) * gamma(a-0.5) * gamma(b-0.5) ) / ( 2 * gamma(a) * gamma(b) )                     
+                                                 
+                                                 return(
+                                                        ifelse(a > 0.5 & b > 0.5, mu + sigma * EZ, NaN)
+                                                        )
+                                               },
+      variance = function(mu, sigma, nu, tau) {
+                                                 a <- (1 + nu * (2*tau + nu^2)^(-1/2)) / tau
+                                                 b <- (1 - nu * (2*tau + nu^2)^(-1/2)) / tau
+                                               EZ1 <- ( sqrt(a + b) * (a - b) * gamma(a-0.5) * gamma(b-0.5) ) / ( 2 * gamma(a) * gamma(b) )
+                                               EZ2 <- ( (a + b) * ((a - b)^2 + a + b - 2) )  / ( 4 * (a - 1) * (b -1) )
+                                                 
+                                                 return(
+                                                       ifelse(a > 1 & b > 1, sigma^2 * (EZ2 - EZ1^2) , NaN)
+                                                       )
+                                               }
           ),
             class = c("gamlss.family","family"))
 }

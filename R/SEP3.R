@@ -194,7 +194,9 @@ SEP3 <- function (mu.link="identity", sigma.link="log", nu.link ="log", tau.link
            sigma.valid = function(sigma)  all(sigma > 0),
               nu.valid = function(nu) all(nu > 0), 
              tau.valid = function(tau) all(tau > 0), 
-               y.valid = function(y)  TRUE
+               y.valid = function(y)  TRUE,
+                  mean = function(mu, sigma, nu, tau) mu + (sigma * 2^(1/tau) * gamma(2/tau) * (nu - 1/nu)) / gamma(1/tau),
+              variance = function(mu, sigma, nu, tau) sigma^2 * ( (2^(2/tau) * gamma(3/tau) * (nu^2 + nu^(-2) - 1)) / gamma(1/tau) - ( (2^(1/tau) * gamma(2/tau) * (nu-1/nu)) / gamma(1/tau) )^2 )
           ),
             class = c("gamlss.family","family"))
 }

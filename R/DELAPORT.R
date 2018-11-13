@@ -135,7 +135,9 @@
               mu.valid = function(mu) all(mu > 0) , 
            sigma.valid = function(sigma)  all(sigma > 0), 
               nu.valid = function(nu) all(nu > 0) && all(nu < 1),    
-               y.valid = function(y)  all(y >= 0)
+               y.valid = function(y)  all(y >= 0),
+                  mean = function(mu, sigma, nu) mu,
+              variance = function(mu, sigma, nu) mu + mu^2 * sigma * (1 - nu)^2
           ),
             class = c("gamlss.family","family"))
 }

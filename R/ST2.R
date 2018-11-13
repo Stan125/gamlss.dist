@@ -185,7 +185,21 @@ d2ldvdt
    sigma.valid = function(sigma)  all(sigma > 0),
       nu.valid = function(nu) TRUE , 
      tau.valid = function(tau) all(tau > 0), 
-       y.valid = function(y)  TRUE
+       y.valid = function(y)  TRUE,
+          mean = function(mu, sigma, nu, tau) {
+                                               EZ <- (nu * sqrt(tau) * gamma((tau-1) / 2)) / ( sqrt(1 + nu^2) * sqrt(pi) * gamma(tau/2))                     
+  
+                                               return(
+                                                  ifelse(tau > 1, mu + sigma * EZ, NaN)
+                                                     )
+                                              },
+      variance = function(mu, sigma, nu, tau) {
+                                               EZ <- (nu * sqrt(tau) * gamma((tau-1) / 2)) / ( sqrt(1 + nu^2) * sqrt(pi) * gamma(tau/2))                     
+                                                
+                                               return(
+                                                  ifelse(tau > 2, sigma^2 * ( tau / (tau-2) - (EZ)^2 ), NaN)
+                                                     )
+                                              } 
           ),
             class = c("gamlss.family","family"))
 }
