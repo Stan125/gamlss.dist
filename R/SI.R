@@ -109,7 +109,7 @@ SI <-function (mu.link ="log", sigma.link="log", nu.link="identity")
            sigma.valid = function(sigma)  all(sigma > 0), 
               nu.valid = function(nu) TRUE,  
                y.valid = function(y)  all(y >= 0),
-                  mean = function(mu, sigma, nu, tau) {
+                  mean = function(mu, sigma, nu) {
                                                         t          <- 1 / sigma
                                                         lambda1    <- nu + 1
                                                         lambda2    <- nu
