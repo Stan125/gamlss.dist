@@ -161,20 +161,8 @@ ZISICHEL <-function (mu.link ="log", sigma.link="log", nu.link="identity", tau.l
            y.valid = function(y)  all(y >= 0),
            mean = function(mu, sigma, nu, tau) (1 - tau) * mu,
            variance = function(mu, sigma, nu, tau) {
-             t          <- 1 / sigma
-             lambda1    <- nu + 1
-             lambda2    <- nu
-             integrand1 <- function(x) { 
-               x^(lambda1-1) * exp(-0.5*t*(x+1/x)) 
-             }
-             integrand2 <- function(x) { 
-               x^(lambda2-1) * exp(-0.5*t*(x+1/x)) 
-             }
-             K1         <- integrate(integrand1,0,Inf)$value*0.5
-             K2         <- integrate(integrand2,0,Inf)$value*0.5
-             b          <- K1 / K2
-             
-             h1 <- 1 / (1 - tau) * (2 * sigma * (nu + 1) / b + 1 / b^2) - 1
+             b <- besselK((1 / sigma), nu = nu + 1) / besselK((1 / sigma), nu = nu)
+             h1 <- (1 / (1 - tau)) * ((2 * sigma * (nu + 1) / b) + (1 / b^2)) - 1
              
              return(
                (1 - tau) * mu + (1 - tau)^2 * mu^2 * h1

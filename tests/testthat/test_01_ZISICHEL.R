@@ -8,17 +8,17 @@
 testthat::context("ZISICHEL")
 
 ## Seed
-set.seed(401)
+set.seed(335)
 
 ## Family
 fam <- ZISICHEL()
 
 ## Random Values
 i <- 0.2
-n <- 1e5
+n <- 1e6
 mu <- 1 + i
 sigma <- 1 + i  
-nu <- -0.5 + i
+nu <- 0.5 + i
 tau <- 0.1 + i
 rvec <- rZISICHEL(n, mu, sigma, nu, tau) 
 
