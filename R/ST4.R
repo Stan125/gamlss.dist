@@ -251,20 +251,24 @@ ST4 <- function (mu.link="identity", sigma.link="log", nu.link ="log", tau.link=
              tau.valid = function(tau) all(tau > 0), 
                y.valid = function(y)  TRUE,
                   mean = function(mu, sigma, nu, tau) {
+                                                        if (any(tau <= 1)) stop(paste("tau must be greater than 1", "\n", ""))
+                                                        if (any(nu <= 1)) stop(paste("nu must be greater than 1", "\n", ""))
                                                         c  <- 2 / (sqrt(nu) * beta(1/2, nu/2) + sqrt(tau) * beta(1/2, tau/2) )
                                                         EZ <- c * (tau / (tau -1) - nu / (nu-1) )                     
                                                         
                                                         return(
-                                                               ifelse(nu > 1 & tau > 1, mu + sigma * EZ, NaN)
+                                                                mu + sigma * EZ
                                                                )
                                                       },
               variance = function(mu, sigma, nu, tau) {
+                                                        if (any(tau <= 2)) stop(paste("tau must be greater than 2", "\n", ""))
+                                                        if (any(nu <= 2)) stop(paste("nu must be greater than 2", "\n", ""))                                   
                                                         c  <- 2 / (sqrt(nu) * beta(1/2, nu/2) + sqrt(tau) * beta(1/2, tau/2) )
                                                         EZ1 <- c * (tau / (tau -1) - nu / (nu-1) )
                                                         EZ2 <- (c * tau^(3/2) * beta(1/2, tau/2) ) / (2 * (tau -2)) + (c * nu^(3/2) * beta(1/2, nu/2)) / (2 * (nu-2) )
                                                         
                                                         return(
-                                                               ifelse(nu > 2 & tau > 2, sigma^2 * (EZ2 - EZ1^2) , NaN)
+                                                               sigma^2 * (EZ2 - EZ1^2)
                                                               )
                                                       }
           ),

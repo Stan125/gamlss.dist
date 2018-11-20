@@ -93,9 +93,11 @@ NET <- function (mu.link ="identity", sigma.link="log", nu.link ="identity", tau
               nu.valid = function(nu) all(nu > 0), 
              tau.valid = function(tau, nu) all(tau > nu),
                y.valid = function(y) TRUE,
-                  mean = function(mu, sigma, nu, tau) ifelse( nu * tau > 2,
-                                                              mu,
-                                                              NaN),
+                  mean = function(mu, sigma, nu, tau) {
+                                                       if (any(nu * tau <= 2))  stop(paste("nu * tau must be greater than 2", "\n", ""))
+                                                       
+                                                        mu
+                                                        },
               variance = function(mu, sigma, nu, tau) {
                                                        a <- sqrt(2*pi) *  (2*pnorm(nu) - 1)
                                                        b <- 2/nu * exp(-nu^2/2) 
