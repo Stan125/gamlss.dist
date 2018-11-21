@@ -8,14 +8,14 @@
 testthat::context("GPO")
 
 ## Seed
-set.seed(218)
+set.seed(187)
 
 ## Family
 fam <- GPO()
 
 ## Random Values
 i <- 0.5
-n <- 2e4
+n <- 1e5
 mu <- 1 + i
 sigma <- 1 + i
 rvec <- rGPO(n, mu, sigma) 

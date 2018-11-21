@@ -8,7 +8,7 @@
 testthat::context("SEP3")
 
 ## Seed
-set.seed(241)
+set.seed(257)
 
 ## Family
 fam <- SEP3()

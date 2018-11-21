@@ -8,7 +8,7 @@
 testthat::context("GT")
 
 ## Seed
-set.seed(222)
+set.seed(361)
 
 ## Family
 fam <- GT()
@@ -19,7 +19,7 @@ mu <- 0 + i
 sigma <- 1 + i
 nu <- 3 + i
 tau <- 1.5 + i
-rvec <- rGT(1e3, mu, sigma, nu, tau) # smaller sample to speed it up
+rvec <- rGT(1e4, mu, sigma, nu, tau) # smaller sample to speed it up
 
 ## Empirical Moments
 ex_emp <- round(mean(rvec), 3)

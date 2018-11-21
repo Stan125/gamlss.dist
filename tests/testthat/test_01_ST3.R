@@ -8,14 +8,14 @@
 testthat::context("ST3")
 
 ## Seed
-set.seed(241)
+set.seed(268)
 
 ## Family
 fam <- ST3()
 
 ## Random Values
 i <- 1
-n <- 1e5
+n <- 1e6
 mu <- 0 + i
 sigma <- 1 + i
 nu <- 1 + i

@@ -28,5 +28,5 @@ ex_theo <- round(fam$mean(mu, sigma),3)
 vx_theo <- round(fam$variance(mu, sigma),3)
 
 ## Test here 
-expect_true(abs(ex_emp - ex_theo) < 0.01)  
-expect_true(abs(vx_emp - vx_theo) < 0.01)  
+expect_true(abs(ex_emp - ex_theo) < 0.02)  
+expect_true(abs(vx_emp - vx_theo) < 0.02)  

@@ -8,7 +8,7 @@
 testthat::context("SN2")
 
 ## Seed
-set.seed(222)
+set.seed(239)
 
 ## Family
 fam <- SN2()
@@ -29,5 +29,5 @@ ex_theo <- round(fam$mean(mu, sigma, nu),3)
 vx_theo <- round(fam$variance(mu, sigma, nu),3)
 
 ## Test here
-expect_true(abs(ex_emp - ex_theo) < 0.01)  
-expect_true(abs(vx_emp - vx_theo) < 0.01) 
+expect_true(abs(ex_emp - ex_theo) < 0.02)  
+expect_true(abs(vx_emp - vx_theo) < 0.02) 

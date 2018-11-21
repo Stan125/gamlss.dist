@@ -8,7 +8,7 @@
 testthat::context("ZIBNB")
 
 ## Seed
-set.seed(413)
+set.seed(619)
 
 ## Family
 fam <- ZIBNB()
@@ -16,7 +16,7 @@ fam <- ZIBNB()
 
 ## Random Values
 i <- 0.5
-n <- 1e4
+n <- 1e5
 mu <- 1 + i
 sigma <- 0.1 + i
 nu <- 1 + i

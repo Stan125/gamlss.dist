@@ -15,7 +15,7 @@ fam <- LG()
 
 ## Random Values
 i <- 0.2
-n <- 3e4
+n <- 1e5
 mu <- 0.5 + i
 rvec <- rLG(n, mu)
 

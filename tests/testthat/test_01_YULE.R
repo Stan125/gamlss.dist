@@ -8,7 +8,7 @@
 testthat::context("YULE")
 
 ## Seed
-set.seed(236)
+set.seed(278)
 
 ## Family
 fam <- YULE()

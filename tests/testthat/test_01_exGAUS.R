@@ -8,7 +8,7 @@
 testthat::context("exGAUS")
 
 ## Seed
-set.seed(333)
+set.seed(217)
 
 ## Family
 fam <- exGAUS()
@@ -18,7 +18,7 @@ i <- 1
 mu <- 5 + i
 sigma <- 1 + i
 nu <- 1 + i
-rvec <- rexGAUS(1e4, mu, sigma, nu)
+rvec <- rexGAUS(1e5, mu, sigma, nu)
 
 ## Empirical Moments
 ex_emp <- mean(rvec)
