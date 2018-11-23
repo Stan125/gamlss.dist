@@ -5,7 +5,7 @@
 #######################################
 
 ## Context
-testthat::context("GU")
+testthat::context("GU 2")
 
 ## Seed
 set.seed(321)

@@ -5,7 +5,7 @@
 ##################################
 
 ## Context
-testthat::context("WARING")
+testthat::context("WARING 2")
 
 ## Seed
 set.seed(288)

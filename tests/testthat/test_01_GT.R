@@ -5,7 +5,7 @@
 #######################################
 
 ## Context
-testthat::context("GT")
+testthat::context("GT 2")
 
 ## Seed
 set.seed(361)

@@ -5,7 +5,7 @@
 #######################################
 
 ## Context
-testthat::context("ZASICHEL")
+testthat::context("ZASICHEL 2")
 
 ## Seed
 set.seed(178)
@@ -15,7 +15,7 @@ fam <- ZASICHEL()
 
 ## Random Values
 i <- 0.6
-n <- 1e4
+n <- 1e5
 mu <- 1 + i
 sigma <- 1 + i  
 nu <- -0.5 + i

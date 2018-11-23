@@ -5,7 +5,7 @@
 ########################################
 
 ## Context
-testthat::context("NET")
+testthat::context("NET 2")
 
 ## Seed
 set.seed(239)

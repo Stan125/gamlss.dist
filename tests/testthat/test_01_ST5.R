@@ -5,10 +5,10 @@
 #########################################
 
 ## Context
-testthat::context("ST5")
+testthat::context("ST5 2")
 
 ## Seed
-set.seed(241)
+set.seed(259)
 
 ## Family
 fam <- ST5()
@@ -21,6 +21,13 @@ sigma <- 1 + i
 nu <- 0 + i
 tau <- 0.5 + i
 rvec <- rST5(n, mu, sigma, nu, tau) 
+
+# vars <- c()
+# for (i in 1:1000) {
+#   cat(paste0(i, "\n"))
+#   vars[i] <- var(rST5(n, mu, sigma, nu, tau))
+# }
+# vx_emp <- mean(vars)
 
 ## Empirical Moments
 ex_emp <- mean(rvec)

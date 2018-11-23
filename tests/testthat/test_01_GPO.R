@@ -5,7 +5,7 @@
 ##################################
 
 ## Context
-testthat::context("GPO")
+testthat::context("GPO 2")
 
 ## Seed
 set.seed(183)

@@ -5,7 +5,7 @@
 ############################################
 
 ## Context
-testthat::context("ZAPIG")
+testthat::context("ZAPIG 2")
 
 ## Seed
 set.seed(103)

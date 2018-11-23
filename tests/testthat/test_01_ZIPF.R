@@ -5,7 +5,7 @@
 ##################################
 
 ## Context
-testthat::context("ZIPF")
+testthat::context("ZIPF 2")
 
 ## Seed
 set.seed(221)

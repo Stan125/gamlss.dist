@@ -5,7 +5,7 @@
 ######################################
 
 ## Context
-testthat::context("DEL")
+testthat::context("DEL 2")
 
 ## Seed
 set.seed(231)

@@ -14,7 +14,7 @@ set.seed(401)
 fam <- ZABI()
 
 ## Random Values
-n <- 1e2
+n <- 1e4
 mu <- 0.5
 sigma <- 0.1
 rvec <- rZABI(n, bd = n,  mu, sigma) 
@@ -28,6 +28,6 @@ ex_theo <- fam$mean(n, mu, sigma)
 vx_theo <- fam$variance(n, mu, sigma) 
 
 ## Test here if they are about the same
-expect_true(abs(ex_emp - ex_theo) < 0.02)  
-expect_true(abs(vx_emp - vx_theo) < 0.02) 
+expect_true(abs(ex_emp / ex_theo - 1) < 0.02)  
+expect_true(abs(vx_emp / vx_theo - 1) < 0.02) 
 

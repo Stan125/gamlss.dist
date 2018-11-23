@@ -5,7 +5,7 @@
 ########################################
 
 ## Context
-testthat::context("SHASHo")
+testthat::context("SHASHo 2")
 
 ## Seed
 set.seed(291)

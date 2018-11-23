@@ -5,7 +5,7 @@
 #######################################
 
 ## Context
-testthat::context("BNB")
+testthat::context("BNB 2")
 
 ## Seed
 set.seed(123)
@@ -30,5 +30,5 @@ ex_theo <- fam$mean(mu, sigma, nu)
 vx_theo <- fam$variance(mu, sigma, nu)
 
 ## Test here if they are about the same
-expect_true(abs(ex_emp - ex_theo) < 0.02)  
-expect_true(abs(vx_emp - vx_theo) < 0.4) # converges for higher n so ok
+expect_true(abs(ex_emp / ex_theo - 1) < 0.03) # converges for higher n so ok
+expect_true(abs(vx_emp / vx_theo - 1) < 0.03)

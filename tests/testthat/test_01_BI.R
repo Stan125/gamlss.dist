@@ -5,7 +5,7 @@
 ################################
 
 ## Context
-testthat::context("BI")
+testthat::context("BI 2")
 
 ## Seed
 set.seed(401)
@@ -15,7 +15,7 @@ fam <- BI()
 
 ## Random Values
 i <- 0.2
-n <- 1e2
+n <- 1e4
 mu <- 0.5 + i
 rvec <- rBI(n, n, mu) 
 
@@ -28,6 +28,6 @@ ex_theo <- fam$mean(n, mu)
 vx_theo <- fam$variance(n, mu) 
 
 ## Test here if they are about the same
-expect_true(abs(ex_emp - ex_theo) < 0.02)  
-expect_true(abs(vx_emp - vx_theo) < 0.02) 
+expect_true(abs(ex_emp / ex_theo - 1) < 0.02)  
+expect_true(abs(vx_emp / vx_theo - 1) < 0.02)  
 

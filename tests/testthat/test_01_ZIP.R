@@ -5,7 +5,7 @@
 #######################################
 
 ## Context
-testthat::context("ZIP")
+testthat::context("ZIP 2")
 
 ## Seed
 set.seed(251)

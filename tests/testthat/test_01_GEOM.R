@@ -5,7 +5,7 @@
 ########################################
 
 ## Context
-testthat::context("GEOM")
+testthat::context("GEOM 2")
 
 ## Seed
 set.seed(225)

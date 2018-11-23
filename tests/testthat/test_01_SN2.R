@@ -5,7 +5,7 @@
 #######################################
 
 ## Context
-testthat::context("SN2")
+testthat::context("SN2 2")
 
 ## Seed
 set.seed(239)

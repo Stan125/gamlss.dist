@@ -5,7 +5,7 @@
 ###############################################
 
 ## Context
-testthat::context("EGB2")
+testthat::context("EGB2 2")
 
 ## Seed
 set.seed(333)
