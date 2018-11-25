@@ -211,62 +211,23 @@ SHASHo <- function (mu.link = "identity", sigma.link = "log",
         tau.valid = function(tau) all(tau > 0), 
         y.valid = function(y) TRUE,
         mean = function(mu, sigma, nu, tau) {
-                                             t          <- 0.25
-                                             q          <- 1 / tau
-                                             lambda1    <- (q+1) / 2
-                                             lambda2    <- (q-1) / 2
-                                             integrand1 <- function(x) { 
-                                                                        x^(lambda1-1) * exp(-0.5*t*(x+1/x)) 
-                                                                       }
-                                             integrand2 <- function(x) { 
-                                                                        x^(lambda2-1) * exp(-0.5*t*(x+1/x)) 
-                                                                       }
-                                             K1         <- integrate(integrand1,0,Inf)$value*0.5
-                                             K2         <- integrate(integrand2,0,Inf)$value*0.5
-       
-                                             P          <- exp(1/4) / (8*pi)^(1/2) * (K1 + K2)
-       
-       
-                                             return(
-                                                    mu + sigma * sinh(nu/tau) * P
-                                                   )
-                                             },
+                        q     <- 1 / tau
+                        K1    <- besselK(0.25,(q+1) / 2)
+                        K2    <- besselK(0.25,(q-1) / 2)
+                        P     <- exp(1/4) / (8*pi)^(1/2) * (K1 + K2)
+                        return( mu + sigma * sinh(nu/tau) * P)
+                        },
         variance = function(mu, sigma, nu, tau) {
-                                                 t          <- 0.25
-                                                 q1         <- 1 / tau
-                                                 lambda1    <- (q1+1) / 2
-                                                 lambda2    <- (q1-1) / 2
-                                                 integrand1 <- function(x) { 
-                                                                             x^(lambda1-1) * exp(-0.5*t*(x+1/x)) 
-                                                                           }
-                                                 integrand2 <- function(x) { 
-                                                                             x^(lambda2-1) * exp(-0.5*t*(x+1/x)) 
-                                                                           }
-                                                 K1         <- integrate(integrand1,0,Inf)$value*0.5
-                                                 K2         <- integrate(integrand2,0,Inf)$value*0.5
-                                                 
-                                                 P1         <- exp(1/4) / (8*pi)^(1/2) * (K1 + K2)
-                                                 
-                                                 q2         <- 2 / tau
-                                                 lambda3    <- (q2+1) / 2
-                                                 lambda4    <- (q2-1) / 2
-                                                 integrand3 <- function(x) { 
-                                                                             x^(lambda3-1) * exp(-0.5*t*(x+1/x)) 
-                                                                           }
-                                                 integrand4 <- function(x) { 
-                                                                             x^(lambda4-1) * exp(-0.5*t*(x+1/x)) 
-                                                                           }
-                                                 K3         <- integrate(integrand3,0,Inf)$value*0.5
-                                                 K4         <- integrate(integrand4,0,Inf)$value*0.5
-                                                 
-                                                 P2         <- exp(1/4) / (8*pi)^(1/2) * (K3 + K4)
-                                                 
-                                                 return(
-                                                         sigma^2 / 2 * (cosh(2*nu/tau) * P2 -1) - sigma^2 * (sinh(nu/tau) * P1)^2
-                                                       )
-                                                }
-                                                 
-     
+                            q1    <- 1 / tau
+                            K1    <- besselK(0.25, (q1+1) / 2)
+                            K2    <- besselK(0.25, (q1-1) / 2)
+                            P1    <- exp(1/4) / (8*pi)^(1/2) * (K1 + K2)
+                            q2    <- 2 / tau
+                            K3    <- besselK(0.25, (q2+1) / 2)
+                            K4    <- besselK(0.25, (q2-1) / 2)
+                            P2    <- exp(1/4) / (8*pi)^(1/2) * (K3 + K4)
+                            return( sigma^2 / 2 * (cosh(2*nu/tau) * P2 -1) - sigma^2 * (sinh(nu/tau) * P1)^2)
+                            }
      ), 
         class = c("gamlss.family", "family"))
 }
