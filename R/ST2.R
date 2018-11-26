@@ -187,15 +187,21 @@ d2ldvdt
      tau.valid = function(tau) all(tau > 0), 
        y.valid = function(y)  TRUE,
           mean = function(mu, sigma, nu, tau) {
-                                                if (any(tau <= 1)) stop(paste("tau must be greater than 1", "\n", ""))
-                                                  EZ <- (nu * sqrt(tau) * gamma((tau-1) / 2)) / ( sqrt(1 + nu^2) * sqrt(pi) * gamma(tau/2))
-                                                  return(mu + sigma * EZ)
-                                              },
+                          if (tau > 1) { 
+                            EZ <- (nu * sqrt(tau) * gamma((tau-1) / 2)) / ( sqrt(1 + nu^2) * sqrt(pi) * gamma(tau/2))
+                            return(mu + sigma * EZ)
+                          } else {
+                            return(NaN)
+                          }
+                        },
       variance = function(mu, sigma, nu, tau) {
-                                                if (any(tau <= 2)) stop(paste("tau must be greater than 2", "\n", ""))
-                                                  EZ <- (nu * sqrt(tau) * gamma((tau-1) / 2)) / ( sqrt(1 + nu^2) * sqrt(pi) * gamma(tau/2))
-                                                  return(sigma^2 * ( tau / (tau-2) - (EZ)^2))
-                                              } 
+                          if (tau >  2) {
+                            EZ <- (nu * sqrt(tau) * gamma((tau-1) / 2)) / ( sqrt(1 + nu^2) * sqrt(pi) * gamma(tau/2))
+                            return(sigma^2 * ( tau / (tau-2) - (EZ)^2))
+                          } else {
+                            return(NaN)
+                          }
+                        } 
           ),
             class = c("gamlss.family","family"))
 }
