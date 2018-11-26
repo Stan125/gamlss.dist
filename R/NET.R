@@ -95,18 +95,18 @@ NET <- function (mu.link ="identity", sigma.link="log", nu.link ="identity", tau
                y.valid = function(y) TRUE,
                   mean = function(mu, sigma, nu, tau) {
                                   if (nu * tau > 2) {mu} else{NaN}
-                                  },
+                         },
               variance = function(mu, sigma, nu, tau) {
                                   if (nu * tau > 3) {
                                   c1 <- sqrt(2*pi) *  (2*pnorm(nu) - 1)
                                   c2 <- 2/nu * exp(-nu^2/2) 
                                   c3 <- 2/(nu*(nu*tau-1)) * exp(-nu*tau + nu^2/2)
-                                  c <- 1/(c1 + c2 + c3) }
-                                  return(ifelse( nu * tau > 3, 2 * sigma^2 * c * (sqrt(2*pi) * (pnorm(nu) - 1/2)
-                                          + (2/nu + 2/nu^3) * exp(-nu^2/2) 
-                                          + (nu^2*tau^2 + 4*nu*tau + 6) / (nu^3 * (nu*tau - 3)) * exp(-nu*tau + nu^2/2)) ,
-                                  Inf) )
-                                   }
+                                  c <- 1/(c1 + c2 + c3) 
+                                  return(2 * sigma^2 * c * (sqrt(2*pi) * (pnorm(nu) - 1/2) + 
+                                         (2/nu + 2/nu^3) * exp(-nu^2/2) +
+                                         (nu^2*tau^2 + 4*nu*tau + 6) / (nu^3 * (nu*tau - 3)) * exp(-nu*tau + nu^2/2)))}
+                                  return(Inf)
+                         }
           ),
             class = c("gamlss.family","family"))
 }
