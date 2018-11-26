@@ -7,6 +7,9 @@
 ## Context
 testthat::context("ZABI")
 
+## Skip this test - currently not important
+testthat::skip("Currently not available")
+
 ## Seed
 set.seed(401)
 
