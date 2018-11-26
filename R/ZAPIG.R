@@ -95,23 +95,19 @@ ZAPIG = function (mu.link = "log", sigma.link = "log", nu.link = "logit")
                  sigma.valid = function(sigma)  all(sigma > 0), 
                  nu.valid = function(nu) all(nu > 0 & nu < 1),           
                  y.valid = function(y)  all(y >= 0),
-                 mean = function(mu, sigma, nu) {
+                 mean = function(mu, sigma, nu) 
+                 {
                    alpha2 <- 1 / sigma^2 + 2* mu / sigma  # see page 94 in Using GAMLSS in R by Rigby et al.
                    alpha  <- sqrt(alpha2)
                    c     <- (1 - nu) / (1 - exp(1 / sigma - alpha ))
-                   
-                   return(
-                     mu * c
-                   )
+                   return(mu * c)
                  },
-                 variance = function(mu, sigma, nu) {
+                 variance = function(mu, sigma, nu) 
+                 {
                    alpha2 <- 1 / sigma^2 + 2* mu / sigma  # see page 94 in Using GAMLSS in R by Rigby et al.
                    alpha  <- sqrt(alpha2)
                    c      <- (1 - nu) / (1 - exp(1 / sigma - alpha ))
-                   
-                   return(
-                     mu * c + c * mu^2 * (1 + sigma - c)
-                   )
+                   return(mu * c + c * mu^2 * (1 + sigma - c))
                  }
   ),
   class = c("gamlss.family","family"))

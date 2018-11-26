@@ -93,19 +93,15 @@ ZANBI = function (mu.link = "log", sigma.link = "log", nu.link = "logit")
                  sigma.valid = function(sigma)  all(sigma > 0), 
                  nu.valid = function(nu) all(nu > 0 & nu < 1),           
                  y.valid = function(y)  all(y >= 0),
-                 mean = function(mu, sigma, nu) {
+                 mean = function(mu, sigma, nu) 
+                 {
                    c   <- (1 - nu) / (1 - (1 + mu * sigma)^(-1/sigma))
-                   
-                   return(
-                     mu * c
-                   )
+                   return(mu * c)
                  },
-                 variance = function(mu, sigma, nu) {
+                 variance = function(mu, sigma, nu) 
+                 {
                    c   <- (1 - nu) / (1 - (1 + mu * sigma)^(-1/sigma))
-                   
-                   return(
-                     mu * c + c * mu^2 * (1 + sigma - c)
-                   )
+                   return(mu * c + c * mu^2 * (1 + sigma - c))
                  }
   ),
   class = c("gamlss.family","family"))
