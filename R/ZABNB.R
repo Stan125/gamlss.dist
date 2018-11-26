@@ -144,21 +144,17 @@ ZABNB <-function (mu.link ="log", sigma.link="log", nu.link="log", tau.link = "l
          nu.valid = function(nu) all(nu > 0), 
          tau.valid = function(tau) all(tau > 0 & tau < 1),  
          y.valid = function(y)  all(y >= 0),
-         mean = function(mu, sigma, nu, tau) {
+         mean = function(mu, sigma, nu, tau) 
+         {
            p0 <- dBNB(0, mu, sigma, nu) 
            c  <- (1 - tau) / (1 - p0)
-           
-           return(
-             mu * c
-           )
+           return(mu * c)
          },
-         variance = function(mu, sigma, nu, tau) {
+         variance = function(mu, sigma, nu, tau) 
+         {
            p0 <- dBNB(0, mu, sigma, nu) 
            c  <- (1 - tau) / (1 - p0)
-           
-           return(
-             ifelse(sigma < 1, c * mu * (1 + mu * nu) * (1 + sigma / nu) / (1 - sigma) + c * (1 - c) * mu^2, Inf)
-           )
+           return(ifelse(sigma < 1, c * mu * (1 + mu * nu) * (1 + sigma / nu) / (1 - sigma) + c * (1 - c) * mu^2, Inf))
          }
     ),
     class = c("gamlss.family","family"))

@@ -149,35 +149,21 @@ ZASICHEL <-function (mu.link ="log", sigma.link="log", nu.link="identity", tau.l
         nu.valid = function(nu) TRUE, 
         tau.valid = function(nu) all(nu > 0 & nu < 1),  
         y.valid = function(y)  all(y >= 0),
-        mean = function(mu, sigma, nu, tau) {
+        mean = function(mu, sigma, nu, tau)
+        {
           p0 <- dSICHEL(0, mu, sigma, nu) 
-          c  <- (1 - tau) / (1 - p0)
-          
-          return(
-            mu * c
-          )
+          c  <- (1 - tau) / (1 - p0) 
+          return( mu * c)
         },
-        variance = function(mu, sigma, nu, tau) {
-          t          <- 1 / sigma
-          lambda1    <- nu + 1
-          lambda2    <- nu
-          integrand1 <- function(x) { 
-            x^(lambda1-1) * exp(-0.5*t*(x+1/x)) 
-          }
-          integrand2 <- function(x) { 
-            x^(lambda2-1) * exp(-0.5*t*(x+1/x)) 
-          }
-          K1         <- integrate(integrand1,0,Inf)$value*0.5
-          K2         <- integrate(integrand2,0,Inf)$value*0.5
-          b          <- K1 / K2
-          
-          p0 <- dSICHEL(0, mu, sigma, nu) 
-          c  <- (1 - tau) / (1 - p0)
-          h1 <- 1 / c * (2 * sigma * (nu + 1) / b + 1 / b^2) - 1
-          
-          return(
-            c * mu + c^2 * mu^2 * h1
-          )
+        variance = function(mu, sigma, nu, tau) 
+        {
+          K1  <- besselK(1 / sigma, nu +1)
+          K2  <- besselK(1 / sigma, nu)
+          b   <- K1 / K2
+          p0  <- dSICHEL(0, mu, sigma, nu) 
+          c   <- (1 - tau) / (1 - p0)
+          h1  <- 1 / c * (2 * sigma * (nu + 1) / b + 1 / b^2) - 1
+          return(c * mu + c^2 * mu^2 * h1)
         }
           ),
         class = c("gamlss.family","family"))

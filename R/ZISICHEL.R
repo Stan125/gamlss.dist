@@ -160,14 +160,12 @@ ZISICHEL <-function (mu.link ="log", sigma.link="log", nu.link="identity", tau.l
            tau.valid = function(nu) all(nu > 0 & nu < 1),  
            y.valid = function(y)  all(y >= 0),
            mean = function(mu, sigma, nu, tau) (1 - tau) * mu,
-           variance = function(mu, sigma, nu, tau) {
+           variance = function(mu, sigma, nu, tau)
+           {
              b <- besselK((1 / sigma), nu = nu + 1) / besselK((1 / sigma), nu = nu)
              h1 <- (1 / (1 - tau)) * ((2 * sigma * (nu + 1) / b) + (1 / b^2)) - 1
-             
-             return(
-               (1 - tau) * mu + (1 - tau)^2 * mu^2 * h1
-             )
-                                                      }
+             return((1 - tau) * mu + (1 - tau)^2 * mu^2 * h1)
+            }
           ),
             class = c("gamlss.family","family"))
 }
