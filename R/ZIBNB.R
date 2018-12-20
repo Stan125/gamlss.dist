@@ -153,7 +153,7 @@ ZIBNB <-function (mu.link ="log", sigma.link="log", nu.link="log", tau.link = "l
          tau.valid = function(tau) all(tau > 0 & tau < 1),  
          y.valid = function(y)  all(y >= 0),
          mean = function(mu, sigma, nu, tau) (1 - tau) * mu,
-         variance = function(mu, sigma, nu, tau) ifelse(sigma < 1, (1 - tau) * mu * (1 + mu * nu) * (1 + sigma / nu) / (1 - sigma) + tau * (1 - tau) * mu^2, Inf)
+         variance = function(mu, sigma, nu, tau) (1 - tau) * mu * (1 + mu * nu) * (1 + sigma / nu) *(1/(1-sigma))+tau*(1-tau)*mu^2
     ),
     class = c("gamlss.family","family"))
 }

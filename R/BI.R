@@ -22,8 +22,8 @@ BI <- function (mu.link = "logit")
          mu.initial = expression({mu <- (y + 0.5)/(bd + 1)}),
          mu.valid = function(mu) all(mu > 0) && all(mu < 1),  
          y.valid = function(y)  all(y >= 0),
-         mean = function(n ,mu) n * mu,
-         variance = function(n, mu) n * mu * (1 - mu)
+         mean = function(bd ,mu) bd * mu,
+         variance = function(bd, mu) bd * mu * (1 - mu)
     ),
     class = c("gamlss.family","family") )
 }

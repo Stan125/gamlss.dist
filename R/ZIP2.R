@@ -63,7 +63,7 @@ sigma.linkinv = dstats$linkinv,
     sigma.valid = function(sigma)  all(sigma > 0 & sigma < 1), 
         y.valid = function(y)  all(y >= 0),
            mean = function(mu, sigma) mu,
-       variance = function(mu, sigma) mu * (1 + mu * sigma / (1-sigma))
+       variance = function(mu, sigma) mu * (1 +(mu * sigma) / (1-sigma))
           ),
           class = c("gamlss.family","family"))
 }

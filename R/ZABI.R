@@ -36,9 +36,9 @@ ZABI <- function (mu.link = "logit", sigma.link = "logit")
    sigma.initial = expression(sigma <-rep(0.3, length(y))), 
       mu.valid = function(mu) all(mu > 0 & mu < 1),
    sigma.valid = function(sigma)  all(sigma > 0 & sigma < 1), 
-       y.valid = function(y)  all(y >= 0)
-      #     ,mean = function(n, mu, sigma) (1 - sigma) * n * mu / (1 - (1 - mu)^n),
-      # variance = function(n, mu, sigma) n * mu * (1 - sigma) * (1 - mu + n * mu) / (1 - (1 - mu)^n) - ((1 - sigma) * n * mu / (1 - (1 - mu)^n))^2
+       y.valid = function(y)  all(y >= 0),
+          mean = function(bd, mu, sigma) (1 - sigma) * bd * mu / (1 - (1 - mu)^bd),
+      variance = function(bd, mu, sigma) bd * mu * (1 - sigma) * (1 - mu + bd * mu) / (1 - (1 - mu)^bd) - ((1 - sigma) * bd * mu / (1 - (1 - mu)^bd))^2
           ),
             class = c("gamlss.family","family"))
 }

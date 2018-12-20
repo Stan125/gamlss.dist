@@ -47,9 +47,9 @@ mu.initial = expression(mu <- rep(0.5,length(y))),         #(((y + 0.5)/(bd +1))
    sigma.initial = expression(sigma <-rep(0.3, length(y))), 
       mu.valid = function(mu) all(mu > 0 & mu < 1),
    sigma.valid = function(sigma)  all(sigma > 0 & sigma < 1), 
-       y.valid = function(y)  all(y >= 0)
-      #     ,mean = function(n, mu, sigma) (1 - sigma) * n * mu,
-      # variance = function(n, mu, sigma) (1 - sigma) * n * mu * (1 - mu + n * mu * sigma)
+       y.valid = function(y)  all(y >= 0),
+          mean = function(bd, mu, sigma) (1 - sigma) * bd * mu,
+      variance = function(bd, mu, sigma) (1 - sigma) * bd * mu * (1 - mu + bd * mu * sigma)
           ),
             class = c("gamlss.family","family"))
 }
