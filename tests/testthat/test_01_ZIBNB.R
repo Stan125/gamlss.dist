@@ -13,7 +13,6 @@ set.seed(619)
 ## Family
 fam <- ZIBNB()
 
-
 ## Random Values
 i <- 0.5
 n <- 1e5

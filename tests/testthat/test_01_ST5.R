@@ -8,7 +8,7 @@
 testthat::context("ST5 2")
 
 ## Seed
-set.seed(259)
+set.seed(248)
 
 ## Family
 fam <- ST5()

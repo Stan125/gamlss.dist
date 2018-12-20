@@ -8,14 +8,14 @@
 testthat::context("ZISICHEL 2")
 
 ## Seed
-set.seed(335)
+set.seed(492)
 
 ## Family
 fam <- ZISICHEL()
 
 ## Random Values
 i <- 0.2
-n <- 1e7
+n <- 1e5
 mu <- 1 + i
 sigma <- 1 + i  
 nu <- 0.5 + i
